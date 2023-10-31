@@ -1,4 +1,4 @@
-name: Mi Demo con React
+name: Mi Demo con React y el evento push
 on: push
 jobs:
   test:
