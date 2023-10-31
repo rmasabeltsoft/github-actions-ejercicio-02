@@ -64,8 +64,24 @@ A continuación tenemos 2 secciones claramente diferenciadas. La primera detalla
 
    Una vez probada nuestra aplicación, para detenerla, simplemente volvemos a nuestro entorno de desarrollo, hacemos clic en el terminal para asegurarnos que el foco se encuentra allí y digitamos `Ctrl+C`. Una vez realizado esto, el terminal volverá a estar listo para ingresar nuevos comandos.
 
-10. Finalmente, como todo el propósito de nuestro ejercicio consiste en practicar con las funcionalidades de GitHub Actions, es un buen momento para instalar la extensión de GitHub Actions. Para esto, seleccionamos la opción **Extensions** (aquella que parece una pieza de tetris) en la barra lateral izquierda, en el buscador de extensiones ingresamos el texto `GitHub Actions`, y le damos al botón **Install** a la derecha de la primera extensión mostrada en el listado (aquella que tiene a GitHub como autor verificado).
+10. FinalmenPor último, como todo el propósito de nuestro ejercicio consiste en practicar con las funcionalidades de GitHub Actions, es un buen momento para instalar la extensión de GitHub Actions. Para esto, seleccionamos la opción **Extensions** (aquella que parece una pieza de tetris) en la barra lateral izquierda, en el buscador de extensiones ingresamos el texto `GitHub Actions`, y le damos al botón **Install** a la derecha de la primera extensión mostrada en el listado (aquella que tiene a GitHub como autor verificado).
    
    ![Nuestra aplicación de ejemplo](img/install-github-actions-extension.png)
 
 Por fin, con este paso tenemos nuestro entorno listo para proceder con el desarrollo del ejercicio a continuación.
+
+## Desarrollo del ejercicio
+
+1. Para iniciar el desarrollo del ejercicio, debemos crear nuestro archivo de workflow en la estructura de carpetas correspondiente (.gitflow>worflows>test.yml) e ingresamos los detalles iniciales del workflow:
+   
+   	```
+    name: Mi Demo con React
+    on: [push]
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+         - name: Obtener código
+    ```
+
+A partir de este punto, vamos a continuar agregando código con los gists compartidos en clase. 
