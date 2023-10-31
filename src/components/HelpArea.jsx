@@ -4,18 +4,18 @@ import './HelpArea.css';
 const HELP_ITEMS = [
   {
     id: 'h1',
-    title: 'What is Git?',
-    text: 'Git is a version control system, helping you to manage your code and create code snapshots.',
+    title: '¿Qué es Git?',
+    text: 'Git es un sistema de control de versiones que nos ayuda a administrar nuestro código y crear instantáneas de código.',
   },
   {
     id: 'h2',
-    title: 'What is GitHub?',
-    text: 'GitHub is a company and online offering, providing you with tons of Git-related services (e.g., cloud repositories).',
+    title: '¿Qué es GitHub?',
+    text: 'GitHub es una empresa y una oferta en línea que nos brinda toneladas de servicios relacionados con Git (por ejemplo, repositorios en la nube).',
   },
   {
     id: 'h3',
-    title: 'What is GitHub Actions?',
-    text: 'GitHub Actions is an automation service (or CI / CD service) that helps you automate repository-related workflows and processes.',
+    title: '¿Qué es GitHub Actions?',
+    text: 'GitHub Actions es un servicio de automatización (o servicio CI/CD) que nos ayuda a automatizar flujos de trabajo y procesos relacionados con el repositorio.',
   },
 ];
 
