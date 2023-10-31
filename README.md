@@ -68,6 +68,18 @@ A continuación tenemos 2 secciones claramente diferenciadas. La primera detalla
    
    ![Nuestra aplicación de ejemplo](img/install-github-actions-extension.png)
 
+11. Una vez instalada la extensión de GitHub Actions, seleccionar su ícono en la barra lateral, y hacer clic en el botón **Sign in to GitHub**.
+
+   ![Inicio de sesión en GitHub](img/github-signin.png)
+
+   Se mostrará un aviso y seleccionamos **Allow**.
+
+   Si el browser nos pide las credenciales de GitHub, las ingresamos y se mostrará el mensaje **You can now close the window.**.
+
+12. Luego de confirmar las credenciales, el panel de GitHub actions nos debe mostrar sus 3 secciones: Current Branch, Workflows y Settings.
+
+   ![Extensión de GitHub Actions](img/github-actions-extension.png)
+
 Por fin, con este paso tenemos nuestro entorno listo para proceder con el desarrollo del ejercicio a continuación.
 
 ## Desarrollo del ejercicio
