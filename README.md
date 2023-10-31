@@ -86,14 +86,155 @@ Por fin, con este paso tenemos nuestro entorno listo para proceder con el desarr
 
 1. Para iniciar el desarrollo del ejercicio, debemos crear nuestro archivo de workflow en la estructura de carpetas correspondiente (.gitflow>worflows>test.yml) e ingresamos los detalles iniciales del workflow:
    
-   	```
+   	<pre>
     name: Mi Demo con React
-    on: [push]
+    on: push
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+         - name: Obtener código</pre>
+    
+   A partir de este punto, en vez de digitar el código vamos a continuar agregando código con los gists compartidos en clase. Y luego de cada cambio, vamos a verificar el estado de nuestros workflows tanto en el portal como en la extensión habilitada en nuestro entorno de desarrollo.
+   
+2. Completamos ahora el código de nuestro workflow con las líneas resaltadas en el siguiente bloque.
+   
+    <pre>
+    name: Mi Demo con React
+    on: push
     jobs:
       test:
         runs-on: ubuntu-latest
         steps:
          - name: Obtener código
-    ```
+           <b>uses: actions/checkout@v4
+         - name: Instalar Node.JS
+           uses: actions/setup-node@v3
+           with:
+             node-version: 18
+         - name: Instalar Dependencias
+           run: npm ci
+         - name: Ejecutar pruebas
+           run: npm test</b></pre>
 
-A partir de este punto, vamos a continuar agregando código con los gists compartidos en clase. 
+3. Renombramos nuestro workflow como **deploy.yml** y agregamos el job correspondiente.
+
+    <pre>
+    name: Mi Demo con React
+    on: push
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+         - name: Obtener código
+           uses: actions/checkout@v4
+         - name: Instalar Node.JS
+           uses: actions/setup-node@v3
+           with:
+             node-version: 18
+         - name: Instalar Dependencias
+           run: npm ci
+         - name: Ejecutar pruebas
+           run: npm test
+     <b>deploy:
+       runs-on: ubuntu-latest
+       steps:
+         - name: Obtener código
+           uses: actions/checkout@v4
+         - name: Instalar Node.JS
+           uses: actions/setup-node@v3
+           with:
+             node-version: 18
+         - name: Instalar Dependencias
+           run: npm install
+         - name: Compilar el proyecto
+           run: npm run build
+         - name: Desplogar el artefacto
+           run: echo "Desplegando..."</b></pre>
+
+4. Agregamos una expresión condicional para asegurar la secuencialidad de los jobs:
+
+    <pre>
+    name: Mi Demo con React
+    on: push
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+         - name: Obtener código
+           uses: actions/checkout@v4
+         - name: Instalar Node.JS
+           uses: actions/setup-node@v3
+           with:
+             node-version: 18
+         - name: Instalar Dependencias
+           run: npm ci
+         - name: Ejecutar pruebas
+           run: npm test
+     deploy:
+       <b>needs: test</b>
+       runs-on: ubuntu-latest
+       steps:
+         - name: Obtener código
+           uses: actions/checkout@v4
+         - name: Instalar Node.JS
+           uses: actions/setup-node@v3
+           with:
+             node-version: 18
+         - name: Instalar Dependencias
+           run: npm install
+         - name: Compilar el proyecto
+           run: npm run build
+         - name: Desplogar el artefacto
+           run: echo "Desplegando..."</pre>
+
+5. Agregamos el soporte de múltiples triggers a nuestro workflow.
+
+    <pre>
+    name: Mi Demo con React
+    on: <b>[push, workflow_dispatch]</b>
+    jobs:
+      test:
+        runs-on: ubuntu-latest
+        steps:
+         - name: Obtener código
+           uses: actions/checkout@v4
+         - name: Instalar Node.JS
+           uses: actions/setup-node@v3
+           with:
+             node-version: 18
+         - name: Instalar Dependencias
+           run: npm ci
+         - name: Ejecutar pruebas
+           run: npm test
+     deploy:
+       needs: test
+       runs-on: ubuntu-latest
+       steps:
+         - name: Obtener código
+           uses: actions/checkout@v4
+         - name: Instalar Node.JS
+           uses: actions/setup-node@v3
+           with:
+             node-version: 18
+         - name: Instalar Dependencias
+           run: npm install
+         - name: Compilar el proyecto
+           run: npm run build
+         - name: Desplogar el artefacto
+           run: echo "Desplegando..."</pre>
+
+6. Finalmente, vamos a crear otro workflow (**output.yml**), asociado a un trigger de eventos en el módulo de issues de nuestro repositorio, y que muestre información de contexto de GitHub y hace uso de expresiones para formatear esa información de forma adecuada. 
+   
+   <pre>
+   name: Información de Salida
+   on: issues
+     jobs:
+       info:
+         runs-on: ubuntu-latest
+         steps:
+           - name: Mostrar contexto de GitHub
+             run: echo "${{ toJSON(github) }}"
+           - name: Mostrar detalles del Job
+             run: echo "${{ toJSON(job) }}"
+   </pre> 
